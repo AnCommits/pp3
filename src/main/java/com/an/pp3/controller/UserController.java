@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
@@ -19,13 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    // Почему я использую проверку на null вместо Optional<String> column и orElse
-    // С Optional в коде будет строка
-    // sortedColumn = column.orElse(sortedColumn);
-    // При column == null, в поле sortedColumn будет перезаписано это же поле.
-    // А достаточно ничего не делать.
-    // Присваивать переменной собственное значение это как-то странно.
-    @GetMapping("/users")
+    @GetMapping
     public String showUsers(@RequestParam(required = false) String column,
                             @RequestParam(required = false) String direction,
                             ModelMap model) {
@@ -41,16 +36,16 @@ public class UserController {
         return "users";
     }
 
-    @PostMapping("/add-user")
+    @PostMapping("add-user")
     public String addUser(@ModelAttribute User user) {
         userService.saveUser(user);
-        return "redirect:users";
+        return "redirect:/users";
     }
 
-    @GetMapping("/remove-user")
-    public String removeUser(@RequestParam long id) {
+    @PostMapping("remove-user/{id}")
+    public String removeUser(@PathVariable long id) {
         userService.removeUserById(id);
-        return "redirect:users";
+        return "redirect:/users";
     }
 
     @GetMapping("/show-update-user")
@@ -63,6 +58,6 @@ public class UserController {
     @PostMapping("/update-user")
     public String updateUser(@ModelAttribute User user) {
         userService.saveUser(user);
-        return "redirect:users";
+        return "redirect:/users";
     }
 }

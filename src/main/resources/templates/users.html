@@ -14,31 +14,31 @@
             Имя
             <a href="/users?column=firstName&direction=DESC" class="button">↑</a>
         </th>
-        <th style="border-bottom: 1px solid"> </th>
+        <th style="border-bottom: 1px solid"></th>
         <th style="border-bottom: 1px solid">
             <a href="/users?column=lastName&direction=ASC" class="button">↓</a>
             Фамилия
             <a href="/users?column=lastName&direction=DESC" class="button">↑</a>
         </th>
-        <th style="border-bottom: 1px solid"> </th>
+        <th style="border-bottom: 1px solid"></th>
         <th style="border-bottom: 1px solid">
             <a href="/users?column=gender&direction=ASC" class="button">↓</a>
             Пол
             <a href="/users?column=gender&direction=DESC" class="button">↑</a>
         </th>
-        <th style="border-bottom: 1px solid"> </th>
+        <th style="border-bottom: 1px solid"></th>
         <th style="border-bottom: 1px solid">
             <a href="/users?column=phoneNumber&direction=ASC" class="button">↓</a>
             Номер тел.
             <a href="/users?column=phoneNumber&direction=DESC" class="button">↑</a>
         </th>
-        <th style="border-bottom: 1px solid"> </th>
+        <th style="border-bottom: 1px solid"></th>
         <th style="border-bottom: 1px solid">
             <a href="/users?column=birthDate&direction=ASC" class="button">↓</a>
             Дата рожд.
             <a href="/users?column=birthDate&direction=DESC" class="button">↑</a>
         </th>
-        <th style="border-bottom: 1px solid"> </th>
+        <th style="border-bottom: 1px solid"></th>
         <th style="border-bottom: 1px solid">
             <a href="/users?column=recordDateTime&direction=ASC" class="button">↓</a>
             Дата, время записи
@@ -62,14 +62,18 @@
         <td style="border-bottom: 1px solid"></td>
         <td style="border-bottom: 1px solid; padding: 0 5px" th:text="${user.getPhoneNumber()}"></td>
         <td style="border-bottom: 1px solid"></td>
-        <td style="border-bottom: 1px solid; padding: 0 5px; text-align: center" th:text="${user.birthDateToString()}"></td>
+        <td style="border-bottom: 1px solid; padding: 0 5px; text-align: center"
+            th:text="${user.birthDateToString()}"></td>
         <td style="border-bottom: 1px solid"></td>
-        <td style="border-bottom: 1px solid; padding: 0 5px; text-align: center" th:text="${user.recordDateTimeToString()}"></td>
+        <td style="border-bottom: 1px solid; padding: 0 5px; text-align: center"
+            th:text="${user.recordDateTimeToString()}"></td>
         <td style="border: 0; padding: 0 5px; text-align: center">
-            <a th:attr="href='/show-update-user?id=' + ${user.id}" class="button">Редактироать</a>
+            <a th:attr="href='/users/show-update-user?id=' + ${user.getId()}" class="button">Редактироать</a>
         </td>
         <td style="border: 0; padding: 0 5px; text-align: center">
-            <a th:attr="href='/remove-user?id=' + ${user.id}" class="button">Удалить</a>
+                        <form th:action="'users/remove-user/' + ${user.getId()}" method="post">
+                            <button type="submit">Удалить</button>
+                        </form>
         </td>
     </tr>
     </tbody>
@@ -89,7 +93,7 @@
     </thead>
     <tbody>
     <tr style="border: 0">
-        <form th:action="add-user" th:object="${userAdd}" method="post">
+        <form action="users/add-user" th:object="${userAdd}" method="post">
             <td><input type="text" id="firstName" size="15" th:field="*{firstName}"></td>
             <td><input type="text" id="lastName" size="20" th:field="*{lastName}"></td>
             <td><select id="gender" th:field="*{gender}">

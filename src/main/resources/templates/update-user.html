@@ -6,7 +6,7 @@
 </head>
 <body>
 <table style="border: 1px solid; margin: auto">
-    <form th:action="update-user" th:object="${user}" method="post">
+    <form action="update-user" th:object="${user}" method="post">
         <tr>
             <td>
                 <table style="border: 0; margin: auto">
@@ -18,27 +18,32 @@
                         <th style="padding: 0 5px; text-align: center"><label for="phoneNumber">Номер телефона</label>
                         </th>
                         <th style="padding: 0 5px; text-align: center"><label for="birthDate">Дата рождения</label></th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr style="border: 0">
-                            <td><input type="text" id="firstName" size="15" th:field="*{firstName}"></td>
-                            <td><input type="text" id="lastName" size="20" th:field="*{lastName}"></td>
-                            <td><select id="gender" th:field="*{gender}">
+                        <td><label for="firstName"></label><input type="text" id="firstName" size="15"
+                                                                  th:field="*{firstName}"></td>
+                        <td><label for="lastName"></label><input type="text" id="lastName" size="20"
+                                                                 th:field="*{lastName}"></td>
+                        <td><label for="gender"></label>
+                            <select id="gender" th:field="*{gender}">
                                 <option value="UNKNOWN">-</option>
                                 <option value="MALE">муж</option>
                                 <option value="FEMALE">жен</option>
                             </select>
-                            </td>
-                            <td><input type="text" id="phoneNumber" size="20" th:field="*{phoneNumber}"></td>
-                            <td><input type="date" id="birthDate" th:field="*{birthDate}"></td>
+                        </td>
+                        <td><label for="phoneNumber"></label>
+                            <input type="text" id="phoneNumber" size="20" th:field="*{phoneNumber}">
+                        </td>
+                        <td><label for="birthDate"></label><input type="date" id="birthDate" th:field="*{birthDate}">
+                        </td>
                     </tr>
                     </tbody>
                 </table>
                 <table style="border: 0; margin: auto">
                     <tr>
-                        <td><input type="text" id="id" hidden="hidden" th:field="*{id}"></td>
+                        <td><label for="id"></label><input type="text" id="id" hidden="hidden" th:field="*{id}"></td>
                         <td><input type="submit" value="Готово" class="button"></td>
                         <td><input type="button" class="button" onclick="history.back();" value="Отмена"/></td>
                     </tr>
