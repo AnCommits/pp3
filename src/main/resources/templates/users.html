@@ -66,10 +66,10 @@
         <td style="border-bottom: 1px solid"></td>
         <td style="border-bottom: 1px solid; padding: 0 5px; text-align: center" th:text="${user.recordDateTimeToString()}"></td>
         <td style="border: 0; padding: 0 5px; text-align: center">
-            <a th:attr="href='/show_update_user?id=' + ${user.id}" class="button">Редактироать</a>
+            <a th:attr="href='/show-update-user?id=' + ${user.id}" class="button">Редактироать</a>
         </td>
         <td style="border: 0; padding: 0 5px; text-align: center">
-            <a th:attr="href='/remove_user?id=' + ${user.id}" class="button">Удалить</a>
+            <a th:attr="href='/remove-user?id=' + ${user.id}" class="button">Удалить</a>
         </td>
     </tr>
     </tbody>
@@ -89,7 +89,7 @@
     </thead>
     <tbody>
     <tr style="border: 0">
-        <form th:action="add_user" th:object="${userAdd}" method="post">
+        <form th:action="add-user" th:object="${userAdd}" method="post">
             <td><input type="text" id="firstName" size="15" th:field="*{firstName}"></td>
             <td><input type="text" id="lastName" size="20" th:field="*{lastName}"></td>
             <td><select id="gender" th:field="*{gender}">

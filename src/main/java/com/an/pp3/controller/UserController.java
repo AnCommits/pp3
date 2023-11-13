@@ -41,26 +41,26 @@ public class UserController {
         return "users";
     }
 
-    @PostMapping("/add_user")
+    @PostMapping("/add-user")
     public String addUser(@ModelAttribute User user) {
         userService.saveUser(user);
         return "redirect:users";
     }
 
-    @GetMapping("/remove_user")
+    @GetMapping("/remove-user")
     public String removeUser(@RequestParam long id) {
         userService.removeUserById(id);
         return "redirect:users";
     }
 
-    @GetMapping("/show_update_user")
-    public String show_update_user(@RequestParam long id, ModelMap model) {
+    @GetMapping("/show-update-user")
+    public String showUpdateUser(@RequestParam long id, ModelMap model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
-        return "show_update_user";
+        return "update-user";
     }
 
-    @PostMapping("/update_user")
+    @PostMapping("/update-user")
     public String updateUser(@ModelAttribute User user) {
         userService.saveUser(user);
         return "redirect:users";
