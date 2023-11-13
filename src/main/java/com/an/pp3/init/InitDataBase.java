@@ -3,9 +3,9 @@ package com.an.pp3.init;
 import com.an.pp3.constant.Gender;
 import com.an.pp3.model.User;
 import com.an.pp3.service.UserService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Component
