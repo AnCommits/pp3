@@ -71,9 +71,9 @@
             <a th:attr="href='/users/show-update-user?id=' + ${user.getId()}" class="button">Редактироать</a>
         </td>
         <td style="border: 0; padding: 0 5px; text-align: center">
-                        <form th:action="'users/remove-user/' + ${user.getId()}" method="post">
-                            <button type="submit">Удалить</button>
-                        </form>
+            <form th:action="'users/remove-user/' + ${user.getId()}" method="post">
+                <button type="submit">Удалить</button>
+            </form>
         </td>
     </tr>
     </tbody>
