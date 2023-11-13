@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование пользователя</title>
+</head>
+<body>
+<table style="border: 1px solid; margin: auto">
+    <form th:action="update_user" th:object="${user}" method="post">
+        <tr>
+            <td>
+                <table style="border: 0; margin: auto">
+                    <thead>
+                    <tr>
+                        <th style="padding: 0 5px; text-align: center"><label for="firstName">Имя</label></th>
+                        <th style="padding: 0 5px; text-align: center"><label for="lastName">Фамилия</label></th>
+                        <th style="padding: 0 5px; text-align: center"><label for="gender">Пол</label></th>
+                        <th style="padding: 0 5px; text-align: center"><label for="phoneNumber">Номер телефона</label>
+                        </th>
+                        <th style="padding: 0 5px; text-align: center"><label for="birthDate">Дата рождения</label></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="border: 0">
+                            <td><input type="text" id="firstName" size="15" th:field="*{firstName}"></td>
+                            <td><input type="text" id="lastName" size="20" th:field="*{lastName}"></td>
+                            <td><select id="gender" th:field="*{gender}">
+                                <option value="UNKNOWN">-</option>
+                                <option value="MALE">муж</option>
+                                <option value="FEMALE">жен</option>
+                            </select>
+                            </td>
+                            <td><input type="text" id="phoneNumber" size="20" th:field="*{phoneNumber}"></td>
+                            <td><input type="date" id="birthDate" th:field="*{birthDate}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table style="border: 0; margin: auto">
+                    <tr>
+                        <td><input type="text" id="id" hidden="hidden" th:field="*{id}"></td>
+                        <td><input type="submit" value="Готово" class="button"></td>
+                        <td><input type="button" class="button" onclick="history.back();" value="Отмена"/></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </form>
+</table>
+</body>
+
+<style>
+    .button {
+        display: inline-block;
+        font-family: Arial, Helvetica, sans-serif;
+        text-decoration: none;
+        background-color: #e5e5e5;
+        color: #000000;
+        border: 1px solid #000000;
+        border-radius: 4px;
+        font-size: 14px;
+        padding: 2px 6px;
+        transition: all 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #c7ffd0;
+        color: #001cab;
+        border: 1px solid #001cab;
+    }
+</style>
+</html>

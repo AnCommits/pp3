@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Пользователи</title>
+</head>
+<body>
+<h3 style="text-align: center">Список пользователей</h3>
+<table style="border: 0; margin: auto;">
+    <thead>
+    <tr>
+        <th style="border-bottom: 1px solid">
+            <a href="/users?column=firstName&direction=ASC" class="button">↓</a>
+            Имя
+            <a href="/users?column=firstName&direction=DESC" class="button">↑</a>
+        </th>
+        <th style="border-bottom: 1px solid"> </th>
+        <th style="border-bottom: 1px solid">
+            <a href="/users?column=lastName&direction=ASC" class="button">↓</a>
+            Фамилия
+            <a href="/users?column=lastName&direction=DESC" class="button">↑</a>
+        </th>
+        <th style="border-bottom: 1px solid"> </th>
+        <th style="border-bottom: 1px solid">
+            <a href="/users?column=gender&direction=ASC" class="button">↓</a>
+            Пол
+            <a href="/users?column=gender&direction=DESC" class="button">↑</a>
+        </th>
+        <th style="border-bottom: 1px solid"> </th>
+        <th style="border-bottom: 1px solid">
+            <a href="/users?column=phoneNumber&direction=ASC" class="button">↓</a>
+            Номер тел.
+            <a href="/users?column=phoneNumber&direction=DESC" class="button">↑</a>
+        </th>
+        <th style="border-bottom: 1px solid"> </th>
+        <th style="border-bottom: 1px solid">
+            <a href="/users?column=birthDate&direction=ASC" class="button">↓</a>
+            Дата рожд.
+            <a href="/users?column=birthDate&direction=DESC" class="button">↑</a>
+        </th>
+        <th style="border-bottom: 1px solid"> </th>
+        <th style="border-bottom: 1px solid">
+            <a href="/users?column=recordDateTime&direction=ASC" class="button">↓</a>
+            Дата, время записи
+            <a href="/users?column=recordDateTime&direction=DESC" class="button">↑</a>
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td style="border-bottom: 1px solid; padding: 0 5px" th:text="${user.getFirstName()}"></td>
+        <td style="border-bottom: 1px solid"></td>
+        <td style="border-bottom: 1px solid; padding: 0 5px" th:text="${user.getLastName()}"></td>
+        <td style="border-bottom: 1px solid"></td>
+        <td style="border-bottom: 1px solid; padding: 0 5px" th:switch="${user.getGender().toString()}">
+            <span th:case="'MALE'">муж</span>
+            <span th:case="'FEMALE'">жен</span>
+            <span th:case="'UNKNOWN'">не указан</span>
+        </td>
+        <td style="border-bottom: 1px solid"></td>
+        <td style="border-bottom: 1px solid; padding: 0 5px" th:text="${user.getPhoneNumber()}"></td>
+        <td style="border-bottom: 1px solid"></td>
+        <td style="border-bottom: 1px solid; padding: 0 5px; text-align: center" th:text="${user.birthDateToString()}"></td>
+        <td style="border-bottom: 1px solid"></td>
+        <td style="border-bottom: 1px solid; padding: 0 5px; text-align: center" th:text="${user.recordDateTimeToString()}"></td>
+        <td style="border: 0; padding: 0 5px; text-align: center">
+            <a th:attr="href='/show_update_user?id=' + ${user.id}" class="button">Редактироать</a>
+        </td>
+        <td style="border: 0; padding: 0 5px; text-align: center">
+            <a th:attr="href='/remove_user?id=' + ${user.id}" class="button">Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h4 style="text-align: center">Добавить пользователя</h4>
+<table style="border: 1px solid; margin: auto">
+    <thead>
+    <tr>
+        <th style="padding: 0 5px; text-align: center"><label for="firstName">Имя</label></th>
+        <th style="padding: 0 5px; text-align: center"><label for="lastName">Фамилия</label></th>
+        <th style="padding: 0 5px; text-align: center"><label for="gender">Пол</label></th>
+        <th style="padding: 0 5px; text-align: center"><label for="phoneNumber">Номер телефона</label></th>
+        <th style="padding: 0 5px; text-align: center"><label for="birthDate">Дата рождения</label></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="border: 0">
+        <form th:action="add_user" th:object="${userAdd}" method="post">
+            <td><input type="text" id="firstName" size="15" th:field="*{firstName}"></td>
+            <td><input type="text" id="lastName" size="20" th:field="*{lastName}"></td>
+            <td><select id="gender" th:field="*{gender}">
+                <option value="UNKNOWN">-</option>
+                <option value="MALE">муж</option>
+                <option value="FEMALE">жен</option>
+            </select>
+            </td>
+            <td><input type="text" id="phoneNumber" size="20" th:field="*{phoneNumber}"></td>
+            <td><input type="date" id="birthDate" th:field="*{birthDate}"></td>
+            <td><input type="submit" value="Готово" class="button"></td>
+        </form>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+<style>
+    .button {
+        display: inline-block;
+        font-family: Arial, Helvetica, sans-serif;
+        text-decoration: none;
+        background-color: #e5e5e5;
+        color: #000000;
+        border: 1px solid #000000;
+        border-radius: 4px;
+        font-size: 12px;
+        padding: 2px 6px;
+        transition: all 0.2s ease;
+    }
+
+    .button:hover {
+        background-color: #c7ffd0;
+        color: #001cab;
+        border: 1px solid #001cab;
+    }
+</style>
+</html>
