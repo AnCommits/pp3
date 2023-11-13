@@ -2,10 +2,10 @@ package com.an.pp3.service;
 
 import com.an.pp3.model.User;
 import com.an.pp3.dao.UserDao;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
