@@ -71,7 +71,7 @@
             <a th:attr="href='/users/show-update-user?id=' + ${user.getId()}" class="button">Редактироать</a>
         </td>
         <td style="border: 0; padding: 0 5px; text-align: center">
-            <form th:action="'users/remove-user/' + ${user.getId()}" method="post">
+            <form th:action="'users/remove-user/' + ${user.getId()}" th:method="delete">
                 <button type="submit">Удалить</button>
             </form>
         </td>
@@ -83,27 +83,27 @@
 <table style="border: 1px solid; margin: auto">
     <thead>
     <tr>
-        <th style="padding: 0 5px; text-align: center"><label for="firstName">Имя</label></th>
-        <th style="padding: 0 5px; text-align: center"><label for="lastName">Фамилия</label></th>
-        <th style="padding: 0 5px; text-align: center"><label for="gender">Пол</label></th>
-        <th style="padding: 0 5px; text-align: center"><label for="phoneNumber">Номер телефона</label></th>
-        <th style="padding: 0 5px; text-align: center"><label for="birthDate">Дата рождения</label></th>
+        <th style="padding: 0 5px; text-align: center">Имя</th>
+        <th style="padding: 0 5px; text-align: center">Фамилия</th>
+        <th style="padding: 0 5px; text-align: center">Пол</th>
+        <th style="padding: 0 5px; text-align: center">Номер телефона</th>
+        <th style="padding: 0 5px; text-align: center">Дата рождения</th>
         <th></th>
     </tr>
     </thead>
     <tbody>
     <tr style="border: 0">
         <form action="users/add-user" th:object="${userAdd}" method="post">
-            <td><input type="text" id="firstName" size="15" th:field="*{firstName}"></td>
-            <td><input type="text" id="lastName" size="20" th:field="*{lastName}"></td>
-            <td><select id="gender" th:field="*{gender}">
+            <td><input type="text" size="15" th:field="*{firstName}"></td>
+            <td><input type="text" th:field="*{lastName}"></td>
+            <td><select th:field="*{gender}">
                 <option value="UNKNOWN">-</option>
                 <option value="MALE">муж</option>
                 <option value="FEMALE">жен</option>
             </select>
             </td>
-            <td><input type="text" id="phoneNumber" size="20" th:field="*{phoneNumber}"></td>
-            <td><input type="date" id="birthDate" th:field="*{birthDate}"></td>
+            <td><input type="text" size="20" th:field="*{phoneNumber}"></td>
+            <td><input type="date" th:field="*{birthDate}"></td>
             <td><input type="submit" value="Готово" class="button"></td>
         </form>
     </tr>
@@ -111,24 +111,6 @@
 </table>
 </body>
 
-<style>
-    .button {
-        display: inline-block;
-        font-family: Arial, Helvetica, sans-serif;
-        text-decoration: none;
-        background-color: #e5e5e5;
-        color: #000000;
-        border: 1px solid #000000;
-        border-radius: 4px;
-        font-size: 12px;
-        padding: 2px 6px;
-        transition: all 0.2s ease;
-    }
-
-    .button:hover {
-        background-color: #c7ffd0;
-        color: #001cab;
-        border: 1px solid #001cab;
-    }
+<style th:replace="blocks/fragments :: button_style">
 </style>
 </html>
