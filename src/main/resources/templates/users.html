@@ -50,29 +50,31 @@
     </thead>
     <tbody>
     <tr th:each="user : ${users}">
-        <td style="border-bottom: 1px solid; padding: 0 5px" th:text="${user.getFirstName()}"></td>
+        <td style="border-bottom: 1px solid; padding: 0 5px" th:text="${user.firstName}"></td>
         <td style="border-bottom: 1px solid"></td>
-        <td style="border-bottom: 1px solid; padding: 0 5px" th:text="${user.getLastName()}"></td>
+        <td style="border-bottom: 1px solid; padding: 0 5px" th:text="${user.lastName}"></td>
         <td style="border-bottom: 1px solid"></td>
-        <td style="border-bottom: 1px solid; padding: 0 5px" th:switch="${user.getGender().toString()}">
-            <span th:case="'MALE'">муж</span>
-            <span th:case="'FEMALE'">жен</span>
-            <span th:case="'UNKNOWN'">не указан</span>
+        <td style="border-bottom: 1px solid; padding: 0 5px" th:switch="${user.gender.toString()}">
+            <span th:case="'MALE'" th:text="${user.gender.value}"></span>
+            <span th:case="'FEMALE'" th:text="${user.gender.value}"></span>
+            <span th:case="'UNKNOWN'" th:text="${user.gender.value}"></span>
         </td>
         <td style="border-bottom: 1px solid"></td>
-        <td style="border-bottom: 1px solid; padding: 0 5px" th:text="${user.getPhoneNumber()}"></td>
+        <td style="border-bottom: 1px solid; padding: 0 5px" th:text="${user.phoneNumber}"></td>
         <td style="border-bottom: 1px solid"></td>
         <td style="border-bottom: 1px solid; padding: 0 5px; text-align: center"
-            th:text="${user.birthDateToString()}"></td>
+            th:text="${user.birthDateToString()}">
+        </td>
         <td style="border-bottom: 1px solid"></td>
         <td style="border-bottom: 1px solid; padding: 0 5px; text-align: center"
-            th:text="${user.recordDateTimeToString()}"></td>
-        <td style="border: 0; padding: 0 5px; text-align: center">
-            <a th:attr="href='/users/show-update-user?id=' + ${user.getId()}" class="button">Редактироать</a>
+            th:text="${user.recordDateTimeToString()}">
         </td>
         <td style="border: 0; padding: 0 5px; text-align: center">
-            <form th:action="'users/remove-user/' + ${user.getId()}" th:method="delete">
-                <button type="submit">Удалить</button>
+            <a th:attr="href='/users/show-update-user?id=' + ${user.id}" class="button">Редактировать</a>
+        </td>
+        <td style="border: 0; padding: 0 5px; text-align: center">
+            <form th:action="'users/remove-user/' + ${user.id}" th:method="delete">
+                <button type="submit" class="button">Удалить</button>
             </form>
         </td>
     </tr>
@@ -81,7 +83,7 @@
 
 <h4 style="text-align: center">Добавить пользователя</h4>
 
-<form action="users/add-user" th:object="${userAdd}" method="post">
+<form action="users/add-user" th:object="${userSave}" method="post">
     <table style="border: none; margin: auto">
         <tbody>
         <tr>

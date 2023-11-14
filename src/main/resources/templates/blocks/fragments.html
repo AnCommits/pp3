@@ -13,11 +13,12 @@
     <tr style="border: 0">
         <td><input type="text" size="15" th:field="*{firstName}"></td>
         <td><input type="text" th:field="*{lastName}"></td>
-        <td><select th:field="*{gender}">
-            <option value="UNKNOWN">-</option>
-            <option value="MALE">муж</option>
-            <option value="FEMALE">жен</option>
-        </select>
+        <td>
+            <select th:field="*{gender}">
+                <option value="UNKNOWN">не указан</option>
+                <option value="MALE">мужской</option>
+                <option value="FEMALE">женский</option>
+            </select>
         </td>
         <td><input type="text" size="20" th:field="*{phoneNumber}"></td>
         <td><input type="date" th:field="*{birthDate}"></td>

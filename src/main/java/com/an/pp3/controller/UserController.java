@@ -32,13 +32,13 @@ public class UserController {
         }
         List<User> users = userService.getAllUsersSorted(sortedColumn, sortedDirection);
         model.addAttribute("users", users);
-        model.addAttribute("userAdd", new User());
+        model.addAttribute("userSave", new User());
         return "users";
     }
 
     @PostMapping("add-user")
-    public String addUser(@ModelAttribute User user) {
-        userService.saveUser(user);
+    public String addUser(@ModelAttribute("userSave") User userSave) {
+        userService.saveUser(userSave);
         return "redirect:/users";
     }
 
@@ -50,14 +50,14 @@ public class UserController {
 
     @GetMapping("/show-update-user")
     public String showUpdateUser(@RequestParam long id, ModelMap model) {
-        User user = userService.getUserById(id);
-        model.addAttribute("user", user);
+        User userSave = userService.getUserById(id);
+        model.addAttribute("userSave", userSave);
         return "update-user";
     }
 
     @PutMapping("/update-user")
-    public String updateUser(@ModelAttribute User user) {
-        userService.saveUser(user);
+    public String updateUser(@ModelAttribute("userSave") User userSave) {
+        userService.saveUser(userSave);
         return "redirect:/users";
     }
 }

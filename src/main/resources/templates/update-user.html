@@ -7,7 +7,7 @@
 <body>
 <h3 style="text-align: center">Редактирование пользователя</h3>
 
-<form action="update-user" th:object="${user}" th:method="put">
+<form action="update-user" th:object="${userSave}" th:method="put">
 
     <table th:replace="~{blocks/fragments :: table_users_edit}"></table>
 

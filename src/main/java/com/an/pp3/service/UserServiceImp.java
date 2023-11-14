@@ -19,14 +19,14 @@ public class UserServiceImp implements UserService {
         this.userDao = userDao;
     }
 
-    @Transactional(readOnly = false)
+    @Transactional
     @Override
     public User saveUser(User user) {
         user.setRecordDateTime(new Date());
         return userDao.save(user);
     }
 
-    @Transactional(readOnly = false)
+    @Transactional
     @Override
     public void saveUsers(List<User> users) {
         users.forEach(u -> u.setRecordDateTime(new Date()));
@@ -57,19 +57,19 @@ public class UserServiceImp implements UserService {
         return userDao.getReferenceById(id);
     }
 
-    @Transactional(readOnly = false)
+    @Transactional
     @Override
     public void removeUser(User user) {
         userDao.delete(user);
     }
 
-    @Transactional(readOnly = false)
+    @Transactional
     @Override
     public void removeUserById(Long id) {
         userDao.deleteById(id);
     }
 
-    @Transactional(readOnly = false)
+    @Transactional
     @Override
     public void removeAllUsers() {
         userDao.deleteAll();
