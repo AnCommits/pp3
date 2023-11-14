@@ -5,50 +5,20 @@
     <title>Редактирование пользователя</title>
 </head>
 <body>
-<table style="border: 1px solid; margin: auto">
-    <form action="update-user" th:object="${user}" th:method="put">
-        <tr>
-            <td>
-                <table style="border: 0; margin: auto">
-                    <thead>
-                    <tr>
-                        <th style="padding: 0 5px; text-align: center">Имя</th>
-                        <th style="padding: 0 5px; text-align: center">Фамилия</th>
-                        <th style="padding: 0 5px; text-align: center">Пол</th>
-                        <th style="padding: 0 5px; text-align: center">Номер телефона</th>
-                        <th style="padding: 0 5px; text-align: center">Дата рождения</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr style="border: 0">
-                        <td><input type="text" size="15" th:field="*{firstName}"></td>
-                        <td><input type="text" size="20" th:field="*{lastName}"></td>
-                        <td>
-                            <select th:field="*{gender}">
-                                <option value="UNKNOWN">-</option>
-                                <option value="MALE">муж</option>
-                                <option value="FEMALE">жен</option>
-                            </select>
-                        </td>
-                        <td><input type="text" size="20" th:field="*{phoneNumber}"></td>
-                        <td><input type="date" th:field="*{birthDate}">
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <table style="border: 0; margin: auto">
-                    <tr>
-                        <td><input type="text" hidden="hidden" th:field="*{id}"></td>
-                        <td><input type="submit" class="button" value="Готово"></td>
-                        <td><input type="button" class="button" onclick="history.back();" value="Отмена"></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </form>
-</table>
+<h3 style="text-align: center">Редактирование пользователя</h3>
+
+<form action="update-user" th:object="${user}" th:method="put">
+
+    <table th:replace="~{blocks/fragments :: table_users_edit}"></table>
+
+    <input type="text" hidden="hidden" th:field="*{id}">
+    <div style="text-align: center; padding-top: 8px">
+        <td><input type="submit" class="button" value="Готово"></td>
+        <td><input type="button" class="button" onclick="history.back();" value="Отмена"></td>
+    </div>
+</form>
 </body>
 
-<style th:replace="blocks/fragments :: button_style">
+<style th:replace="~{blocks/fragments :: button_style}">
 </style>
 </html>

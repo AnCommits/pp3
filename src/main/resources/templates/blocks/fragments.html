@@ -1,3 +1,30 @@
+<table th:fragment="table_users_edit" style="border: none; margin: auto">
+    <thead>
+    <tr>
+        <th style="padding: 0 5px; text-align: center">Имя</th>
+        <th style="padding: 0 5px; text-align: center">Фамилия</th>
+        <th style="padding: 0 5px; text-align: center">Пол</th>
+        <th style="padding: 0 5px; text-align: center">Номер телефона</th>
+        <th style="padding: 0 5px; text-align: center">Дата рождения</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="border: 0">
+        <td><input type="text" size="15" th:field="*{firstName}"></td>
+        <td><input type="text" th:field="*{lastName}"></td>
+        <td><select th:field="*{gender}">
+            <option value="UNKNOWN">-</option>
+            <option value="MALE">муж</option>
+            <option value="FEMALE">жен</option>
+        </select>
+        </td>
+        <td><input type="text" size="20" th:field="*{phoneNumber}"></td>
+        <td><input type="date" th:field="*{birthDate}"></td>
+    </tr>
+    </tbody>
+</table>
+
 <style th:fragment="button_style">
     .button {
         display: inline-block;
