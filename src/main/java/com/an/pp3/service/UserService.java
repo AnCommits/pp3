@@ -6,17 +6,17 @@ import java.util.List;
 
 public interface UserService {
 
-    User saveUser(User user);
+    void saveUser(User user);
 
     void saveUsers(List<User> users);
+
+    User getUserById(Long id);
 
     List<User> getAllUsers();
 
     List<User> getAllUsersSorted(String column, String direction);
 
-    User getUserById(Long id);
-
-    void removeUser(User user);
+    void updateUser(User user);
 
     void removeUserById(Long id);
 

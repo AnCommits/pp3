@@ -21,21 +21,28 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     @Override
-    public User saveUser(User user) {
-        user.setRecordDateTime(new Date());
-        return userDao.save(user);
+    public void saveUser(User user) {
+        if (user != null) {
+            user.setRecordDateTime(new Date());
+            userDao.saveUser(user);
+        }
     }
 
     @Transactional
     @Override
     public void saveUsers(List<User> users) {
         users.forEach(u -> u.setRecordDateTime(new Date()));
-        userDao.saveAllAndFlush(users);
+        userDao.saveUsers(users);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userDao.getUserById(id);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return userDao.findAll();
+        return userDao.getAllUsers();
     }
 
     @Override
@@ -49,29 +56,27 @@ public class UserServiceImp implements UserService {
         } catch (IllegalArgumentException e) {
             sortDirection = Sort.Direction.ASC;
         }
-        return userDao.findAll(Sort.by(sortDirection, column));
-    }
-
-    @Override
-    public User getUserById(Long id) {
-        return userDao.getReferenceById(id);
+        return userDao.getAllUsersSorted(column, sortDirection.name());
     }
 
     @Transactional
     @Override
-    public void removeUser(User user) {
-        userDao.delete(user);
+    public void updateUser(User user) {
+        if (user != null) {
+            user.setRecordDateTime(new Date());
+            userDao.updateUser(user);
+        }
     }
 
     @Transactional
     @Override
     public void removeUserById(Long id) {
-        userDao.deleteById(id);
+        userDao.removeUserById(id);
     }
 
     @Transactional
     @Override
     public void removeAllUsers() {
-        userDao.deleteAll();
+        userDao.removeAllUsers();
     }
 }

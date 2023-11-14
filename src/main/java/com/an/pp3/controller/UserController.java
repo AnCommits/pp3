@@ -57,7 +57,7 @@ public class UserController {
 
     @PutMapping("/update-user")
     public String updateUser(@ModelAttribute("userSave") User userSave) {
-        userService.saveUser(userSave);
+        userService.updateUser(userSave);
         return "redirect:/users";
     }
 }
