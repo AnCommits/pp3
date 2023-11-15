@@ -17,7 +17,7 @@ public class InitDataBase {
         this.userService = userService;
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void initUsers() {
         List<User> users = getInitialUsersList();
         userService.removeAllUsers();
